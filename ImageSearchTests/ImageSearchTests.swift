@@ -21,16 +21,9 @@ class ImageSearchTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testBase64() {
+        XCTAssertTrue( base64Token(key: "f2a1ed52710d4533bde25be6da03b6e3",
+            secret: "6779ef20e75817b79602") ==
+            "ZjJhMWVkNTI3MTBkNDUzM2JkZTI1YmU2ZGEwM2I2ZTM6Njc3OWVmMjBlNzU4MTdiNzk2MDI=", "base64 encoding is wrong" )
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

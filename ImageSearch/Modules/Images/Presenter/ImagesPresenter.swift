@@ -6,13 +6,34 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-class ImagesPresenter: ImagesModuleInput, ImagesViewOutput, ImagesInteractorOutput {
+import UIKit
 
+class ImagesPresenter: ImagesModuleInput, ImagesViewOutput, ImagesInteractorOutput {
+    
     weak var view: ImagesViewInput!
     var interactor: ImagesInteractorInput!
     var router: ImagesRouterInput!
+    var foundImages:[String] = [] {
+        didSet {
+          view.reload()
+        }
+    }
 
     func viewIsReady() {
+        interactor.search(with: "#lovewhereyouwork")
+    }
+    
+    func numberOfItemsInSection() -> Int {
+        return foundImages.count
+    }
+    
+    func images(_ img: [String]) {
+        self.foundImages = img
+        view.reload()
+    }
 
+    
+    func dataModel(with index: IndexPath) -> SearchImageCellModel {
+        return  SearchImageCellModel(strUrl: foundImages[index.row])
     }
 }
