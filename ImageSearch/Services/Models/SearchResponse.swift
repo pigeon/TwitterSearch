@@ -48,7 +48,6 @@ struct Status: Codable {
     let idStr, fullText: String
     let truncated: Bool
     let displayTextRange: [Int]
-    //let entities: StatusEntities
     let extendedEntities: ExtendedEntities?
     let metadata: Metadata
     let source: String
@@ -70,7 +69,6 @@ struct Status: Codable {
         case fullText = "full_text"
         case truncated
         case displayTextRange = "display_text_range"
-        //case entities
         case extendedEntities = "extended_entities"
         case metadata, source
         case inReplyToStatusID = "in_reply_to_status_id"

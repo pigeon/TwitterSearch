@@ -52,7 +52,7 @@ class ImagesViewController: UIViewController, ImagesViewInput {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let columnLayout = ImageFlowLayout(
-        cellsPerRow: 1,
+        cellsPerRow: 3,
         minimumInteritemSpacing: 20,
         minimumLineSpacing: 20,
         sectionInset: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -62,8 +62,6 @@ class ImagesViewController: UIViewController, ImagesViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).minimumLineSpacing = 1000.0f;
-
         self.collectionView.collectionViewLayout = columnLayout
         self.collectionView.contentInsetAdjustmentBehavior = .always
         output.viewIsReady()
