@@ -6,8 +6,23 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
+import Foundation
+
 class ImagesInteractor: ImagesInteractorInput {
 
     weak var output: ImagesInteractorOutput!
+    let twitterSearch:TwitterSearchService
 
+    init(service:TwitterSearchService = TwitterSearchServiceImpl()) {
+        twitterSearch = service
+    }
+    
+    func search(with hashtag: String) {
+        twitterSearch.findImages(with: hashtag) { res in
+            DispatchQueue.main.async {
+                self.output.images(res)
+            }
+        }
+    }
+    
 }

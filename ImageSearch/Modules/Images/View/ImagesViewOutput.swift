@@ -5,6 +5,7 @@
 //  Created by Dmytro Golub on 29/03/2018.
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
+import UIKit
 
 protocol ImagesViewOutput {
 
@@ -14,4 +15,6 @@ protocol ImagesViewOutput {
     */
 
     func viewIsReady()
+    func numberOfItemsInSection() -> Int
+    func dataModel(with index:IndexPath) -> SearchImageCellModel
 }

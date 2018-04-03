@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import ImageSearch
 
 class ImagesPresenterTest: XCTestCase {
 

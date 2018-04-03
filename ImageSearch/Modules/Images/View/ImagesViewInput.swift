@@ -14,4 +14,5 @@ protocol ImagesViewInput: class {
     */
 
     func setupInitialState()
+    func reload()
 }

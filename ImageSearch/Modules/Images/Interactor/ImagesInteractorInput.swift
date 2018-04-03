@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ImagesInteractorInput {
-
+    func search(with hashtag:String)
 }
