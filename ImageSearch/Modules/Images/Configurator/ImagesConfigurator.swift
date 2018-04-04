@@ -19,11 +19,9 @@ class ImagesModuleConfigurator {
 
     private func configure(viewController: ImagesViewController) {
 
-        let router = ImagesRouter()
 
         let presenter = ImagesPresenter()
         presenter.view = viewController
-        presenter.router = router
 
         let interactor = ImagesInteractor()
         interactor.output = presenter

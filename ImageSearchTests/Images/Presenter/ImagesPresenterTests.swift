@@ -22,14 +22,21 @@ class ImagesPresenterTest: XCTestCase {
     }
 
     class MockInteractor: ImagesInteractorInput {
+        func search(with hashtag: String) {
+        }
+        
 
     }
 
-    class MockRouter: ImagesRouterInput {
-
-    }
 
     class MockViewController: ImagesViewInput {
+        func reload() {
+        }
+        
+        func show(error: NSError) {
+            
+        }
+        
 
         func setupInitialState() {
 

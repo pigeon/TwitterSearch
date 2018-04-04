@@ -8,26 +8,6 @@
 
 import Foundation
 
-typealias SearchCompletion = ([String])->Void
-
-
-struct TwitterAccessTokenResponse : Codable {
-    let token_type : String?
-    let access_token : String?
-    
-    enum CodingKeys: String, CodingKey {
-        
-        case token_type = "token_type"
-        case access_token = "access_token"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        token_type = try values.decodeIfPresent(String.self, forKey: .token_type)
-        access_token = try values.decodeIfPresent(String.self, forKey: .access_token)
-    }
-    
-}
 
 
 protocol TwitterSearchService {
@@ -35,11 +15,9 @@ protocol TwitterSearchService {
 }
 
 
-
 class TwitterSearchServiceImpl : TwitterSearchService {
     
     private let session = URLSession(configuration: URLSessionConfiguration.default)
-    
     internal var accessToken = ""
     internal let basicAuthhorisationToken:String
     
@@ -49,9 +27,9 @@ class TwitterSearchServiceImpl : TwitterSearchService {
         basicAuthhorisationToken = base64Token(key: key, secret: secret)
     }
     
-    func findImages(with hashtag: String, completion: @escaping ([String]) -> Void) {
+    func findImages(with hashtag: String, completion: @escaping SearchCompletion ) {
         if accessToken.isEmpty {
-            authorisationToken() { [weak self] in
+            authorisationToken() { [weak self] authCompletion in
                 self?.searchImage(with: hashtag, completion: completion)
             }
         } else {
@@ -59,7 +37,7 @@ class TwitterSearchServiceImpl : TwitterSearchService {
         }
     }
     
-    func authorisationToken(completion:@escaping ()->Void) {
+    func authorisationToken(completion:@escaping AuthorisationCompletion) {
         let url = URL(string: "https://api.twitter.com/oauth2/token")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
@@ -67,16 +45,21 @@ class TwitterSearchServiceImpl : TwitterSearchService {
         request.addValue("Basic \(self.basicAuthhorisationToken)", forHTTPHeaderField: "Authorization")
         request.httpBody = "grant_type=client_credentials".data(using: .utf8)
         let task = session.dataTask(with: request) {  [weak self] (data, response, error) in
-            let jsonDecoder = JSONDecoder()
-            let responseModel = try! jsonDecoder.decode(TwitterAccessTokenResponse.self, from: data!)
-            self?.accessToken = responseModel.access_token!
-            completion()
+            if let data = data {
+                let jsonDecoder = JSONDecoder()
+                let responseModel = try! jsonDecoder.decode(AccessTokenResponse.self, from: data)
+                self?.accessToken = responseModel.access_token!
+                completion(nil)
+            } else {
+                self?.service(error:error as NSError?,completion:AuthorisationAction(completion:completion))
+            }
+
         }
         
         task.resume()
     }
     
-    func searchImage(with hashtag: String, completion: @escaping ([String]) -> Void) {
+    func searchImage(with hashtag: String, completion:@escaping SearchCompletion) {
         let strURL = "https://api.twitter.com/1.1/search/tweets.json?q=\(hashtag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)+-filter%3Aretweets&f=images&include_entities=true&tweet_mode=extended&result_type=recent&count=50"
         
         let url = URL(string: strURL)
@@ -84,33 +67,47 @@ class TwitterSearchServiceImpl : TwitterSearchService {
         request.httpMethod = "GET"
         request.addValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
         let task = session.dataTask(with: request) {  (data, response, error) in
-            let jsonDecoder = JSONDecoder()
             
-            print(String(data:data!,encoding:.utf8)!)
-            
-            let responseModel = try! jsonDecoder.decode(SearchResponse.self, from: data!)
-
-            
-            let urls = responseModel.statuses.flatMap {
-                $0.extendedEntities?.media.map {
-                    $0.mediaURL
-                }
-                }.flatMap{ $0 }
-            
-            print(urls)
-            completion(urls)
+            if let data = data {
+                
+                let jsonDecoder = JSONDecoder()
+                                
+                let responseModel = try! jsonDecoder.decode(SearchResponse.self, from: data)
+                
+                
+                let urls = responseModel.statuses.flatMap {
+                    $0.extendedEntities?.media.map {
+                        $0.mediaURL
+                    }
+                    }.flatMap{ $0 }
+                
+                completion(urls,nil)
+            } else {
+                self.service(error: error as NSError?, completion: SearchAction(completion: completion))
+            }
         }
         
         task.resume()
     }
     
+    func service(error:NSError?,completion:CompletionAction) {
+        if error == nil {
+
+            completion.add(error:NSError(domain: "WebService",
+                                code: Int.max-1,
+                                userInfo: [NSLocalizedDescriptionKey : "Unknown error"]))
+        } else {
+            completion.add(error: error!)
+        }
+        completion.run()
+    }
 }
 
 internal func base64Token(key:String,secret:String) -> String {
     let string = key + ":" + secret
     let data = string.data(using: .utf8)
     guard let base64data = data?.base64EncodedString() else {
-        fatalError("encoding error")
+        return ""
     }
     return base64data
 }

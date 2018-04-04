@@ -36,8 +36,6 @@ class ImagesModuleConfiguratorTests: XCTestCase {
 
         let presenter: ImagesPresenter = viewController.output as! ImagesPresenter
         XCTAssertNotNil(presenter.view, "view in ImagesPresenter is nil after configuration")
-        XCTAssertNotNil(presenter.router, "router in ImagesPresenter is nil after configuration")
-        XCTAssertTrue(presenter.router is ImagesRouter, "router is not ImagesRouter")
 
         let interactor: ImagesInteractor = presenter.interactor as! ImagesInteractor
         XCTAssertNotNil(interactor.output, "output in ImagesInteractor is nil after configuration")

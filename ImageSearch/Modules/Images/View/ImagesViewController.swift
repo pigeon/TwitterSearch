@@ -67,12 +67,22 @@ class ImagesViewController: UIViewController, ImagesViewInput {
         output.viewIsReady()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    
     func reload() {
         self.collectionView.reloadData()
     }
 
     // MARK: ImagesViewInput
     func setupInitialState() {
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        output.prepare(for: segue)
     }
 }
 
@@ -89,5 +99,11 @@ extension ImagesViewController : UICollectionViewDelegate, UICollectionViewDataS
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output.imageSelected(at: indexPath)
+        self.performSegue(withIdentifier: "FullScreenViewController", sender: self)
+    }
 
 }
+

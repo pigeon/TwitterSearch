@@ -75,7 +75,7 @@
                     <navigationItem key="navigationItem" id="ynj-yM-KK1"/>
                     <connections>
                         <outlet property="collectionView" destination="SgC-EB-VqD" id="Ghe-43-vBk"/>
-                        <segue destination="MgQ-Dx-9xb" kind="show" id="XL8-0g-GhV"/>
+                        <segue destination="MgQ-Dx-9xb" kind="show" identifier="FullScreenViewController" id="XL8-0g-GhV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,29 +87,37 @@
             </objects>
             <point key="canvasLocation" x="492" y="-300"/>
         </scene>
-        <!--View Controller-->
+        <!--Fullscreen View Controller-->
         <scene sceneID="FHo-Cc-Yjm">
             <objects>
-                <viewController id="MgQ-Dx-9xb" sceneMemberID="viewController">
+                <viewController id="MgQ-Dx-9xb" customClass="FullScreenViewController" customModule="ImageSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="20x-Vq-oT3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-69-SvV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o6V-69-SvV" firstAttribute="top" secondItem="20x-Vq-oT3" secondAttribute="top" constant="64" id="5Y6-J4-foS"/>
+                            <constraint firstItem="o6V-69-SvV" firstAttribute="top" secondItem="20x-Vq-oT3" secondAttribute="top" id="5Y6-J4-foS"/>
                             <constraint firstItem="o6V-69-SvV" firstAttribute="leading" secondItem="FZd-YH-kZC" secondAttribute="leading" id="Cal-a0-UlN"/>
                             <constraint firstItem="FZd-YH-kZC" firstAttribute="bottom" secondItem="o6V-69-SvV" secondAttribute="bottom" id="Uxo-kS-jmO"/>
                             <constraint firstAttribute="trailing" secondItem="o6V-69-SvV" secondAttribute="trailing" id="mb3-K7-fCZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FZd-YH-kZC"/>
                     </view>
+                    <connections>
+                        <outlet property="image" destination="o6V-69-SvV" id="anF-9V-K9L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRy-0b-Kc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="48f-K0-gy0" customClass="FullScreenModuleInitializer" customModule="ImageSearch" customModuleProvider="target">
+                    <connections>
+                        <outlet property="fullscreenViewController" destination="MgQ-Dx-9xb" id="VGP-mq-QdQ"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1316" y="-300"/>
         </scene>

@@ -10,4 +10,5 @@ import Foundation
 
 protocol ImagesInteractorOutput: class {
     func images(_:[String])
+    func error(_:NSError)
 }
