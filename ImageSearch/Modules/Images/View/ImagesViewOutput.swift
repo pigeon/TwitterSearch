@@ -17,4 +17,6 @@ protocol ImagesViewOutput {
     func viewIsReady()
     func numberOfItemsInSection() -> Int
     func dataModel(with index:IndexPath) -> SearchImageCellModel
+    func imageSelected(at index:IndexPath)
+    func prepare(for segue: UIStoryboardSegue)
 }

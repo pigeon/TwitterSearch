@@ -18,9 +18,13 @@ class ImagesInteractor: ImagesInteractorInput {
     }
     
     func search(with hashtag: String) {
-        twitterSearch.findImages(with: hashtag) { res in
-            DispatchQueue.main.async {
-                self.output.images(res)
+        twitterSearch.findImages(with: hashtag) { res,error  in
+            if let res = res {
+                DispatchQueue.main.async {
+                    self.output.images(res)
+                }
+            } else {
+                self.output.error(error!)
             }
         }
     }

@@ -22,6 +22,12 @@ class ImagesInteractorTests: XCTestCase {
     }
 
     class MockPresenter: ImagesInteractorOutput {
+        func images(_: [String]) {
+        }
+        
+        func error(_: NSError) {
+        }
+        
 
     }
 }

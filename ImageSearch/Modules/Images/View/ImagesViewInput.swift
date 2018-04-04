@@ -6,6 +6,8 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
+import Foundation
+
 protocol ImagesViewInput: class {
 
     /**
@@ -15,4 +17,5 @@ protocol ImagesViewInput: class {
 
     func setupInitialState()
     func reload()
+    func show(error:NSError)
 }
