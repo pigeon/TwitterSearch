@@ -65,7 +65,7 @@ class TwitterSearchServiceImpl: TwitterSearchService {
 
                 let responseModel = try! jsonDecoder.decode(SearchResponse.self, from: data)
 
-                let urls = responseModel.statuses.flatMap {
+                let urls = responseModel.statuses.compactMap {
                     $0.extendedEntities?.media.map {
                         $0.mediaURL
                     }
