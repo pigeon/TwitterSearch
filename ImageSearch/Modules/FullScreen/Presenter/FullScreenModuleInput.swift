@@ -7,5 +7,5 @@
 //
 
 protocol FullScreenModuleInput: class {
-    var imageURL:String {get set}
+    var imageURL: String { get set }
 }

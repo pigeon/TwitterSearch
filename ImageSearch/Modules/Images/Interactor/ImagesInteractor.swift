@@ -9,16 +9,15 @@
 import Foundation
 
 class ImagesInteractor: ImagesInteractorInput {
-
     weak var output: ImagesInteractorOutput!
-    let twitterSearch:TwitterSearchService
+    let twitterSearch: TwitterSearchService
 
-    init(service:TwitterSearchService = TwitterSearchServiceImpl()) {
+    init(service: TwitterSearchService = TwitterSearchServiceImpl()) {
         twitterSearch = service
     }
-    
+
     func search(with hashtag: String) {
-        twitterSearch.findImages(with: hashtag) { res,error  in
+        twitterSearch.findImages(with: hashtag) { res, error in
             if let res = res {
                 DispatchQueue.main.async {
                     self.output.images(res)
@@ -28,5 +27,4 @@ class ImagesInteractor: ImagesInteractorInput {
             }
         }
     }
-    
 }

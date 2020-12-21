@@ -7,11 +7,10 @@
 //
 
 protocol FullScreenViewOutput {
-
     /**
-        @author Dmytro Golub
-        Notify presenter that view is ready
-    */
+     @author Dmytro Golub
+     Notify presenter that view is ready
+     */
 
     func viewIsReady()
     func imageStringURL() -> String

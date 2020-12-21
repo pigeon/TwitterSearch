@@ -6,11 +6,10 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-import XCTest
 @testable import ImageSearch
+import XCTest
 
 class FullScreenPresenterTest: XCTestCase {
-
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,11 +20,8 @@ class FullScreenPresenterTest: XCTestCase {
         super.tearDown()
     }
 
-
     class MockViewController: FullScreenViewInput {
-
         func setupInitialState() {
-
         }
     }
 }

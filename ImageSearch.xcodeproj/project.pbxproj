@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		16EE7052038E01FFDBE2431D /* ImagesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5857F0F684E3ED76AAC0FAA /* ImagesViewInput.swift */; };
 		1A08FD0420756E29008BB65F /* AccessTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A08FD0320756E29008BB65F /* AccessTokenResponse.swift */; };
 		1A08FD0620756F05008BB65F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A08FD0520756F05008BB65F /* ViewController.swift */; };
+		1A2EB6EF258FA8E8004CBCA3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2EB6EE258FA8E8004CBCA3 /* Kingfisher */; };
 		1A49D8CC206C01FC0001FCD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49D8CB206C01FC0001FCD3 /* AppDelegate.swift */; };
 		1A49D8D1206C01FC0001FCD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A49D8CF206C01FC0001FCD3 /* Main.storyboard */; };
 		1A49D8D3206C01FC0001FCD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A49D8D2206C01FC0001FCD3 /* Assets.xcassets */; };
@@ -20,7 +21,6 @@
 		1A611F0B206D964A0043B084 /* SearchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A611F0A206D964A0043B084 /* SearchImageCell.swift */; };
 		1A611F0E2070D9420043B084 /* TwitterSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A611F0D2070D9420043B084 /* TwitterSearchService.swift */; };
 		1A611F7E20727D920043B084 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A611F7D20727D920043B084 /* SearchResponse.swift */; };
-		1A611F812072B6AF0043B084 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A611F802072B6AF0043B084 /* Kingfisher.framework */; };
 		1AA6F06120756C9200C75DA2 /* ErrrorCompletionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6F06020756C9200C75DA2 /* ErrrorCompletionActions.swift */; };
 		1F1471FB56C7B63CFAD75246 /* ImagesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D86A7D1CA558C5252B00AF3 /* ImagesModuleInput.swift */; };
 		234F99FF21F3E2F229B74CB2 /* FullScreenViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CA8A6D346D83A95ED8FF4F /* FullScreenViewOutput.swift */; };
@@ -109,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A611F812072B6AF0043B084 /* Kingfisher.framework in Frameworks */,
+				1A2EB6EF258FA8E8004CBCA3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +407,6 @@
 				1A49D8C4206C01FC0001FCD3 /* Sources */,
 				1A49D8C5206C01FC0001FCD3 /* Frameworks */,
 				1A49D8C6206C01FC0001FCD3 /* Resources */,
-				1A611F822072B6C70043B084 /* Run Script */,
 				1A08FD07207573C2008BB65F /* Taylor */,
 			);
 			buildRules = (
@@ -415,6 +414,9 @@
 			dependencies = (
 			);
 			name = ImageSearch;
+			packageProductDependencies = (
+				1A2EB6EE258FA8E8004CBCA3 /* Kingfisher */,
+			);
 			productName = ImageSearch;
 			productReference = 1A49D8C8206C01FC0001FCD3 /* ImageSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -467,6 +469,9 @@
 				Base,
 			);
 			mainGroup = 1A49D8BF206C01FC0001FCD3;
+			packageReferences = (
+				1A2EB6ED258FA8E8004CBCA3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 1A49D8C9206C01FC0001FCD3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -510,22 +515,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n    tailor\nelse\n    echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
-		};
-		1A611F822072B6C70043B084 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-			);
-			name = "Run Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "if hash tailor 2>/dev/null; then\n    tailor\nelse\n    echo \"warning: Please install Tailor from https://tailor.sh\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -710,7 +700,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -726,7 +717,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ImageSearch/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.name.ImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -745,7 +739,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ImageSearch/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.name.ImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -761,7 +758,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24RC3B3A2H;
 				INFOPLIST_FILE = ImageSearchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.name.ImageSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -778,7 +779,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24RC3B3A2H;
 				INFOPLIST_FILE = ImageSearchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.name.ImageSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -818,6 +823,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A2EB6ED258FA8E8004CBCA3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.15.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A2EB6EE258FA8E8004CBCA3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A2EB6ED258FA8E8004CBCA3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A49D8C0206C01FC0001FCD3 /* Project object */;
 }

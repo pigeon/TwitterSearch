@@ -6,11 +6,10 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-import XCTest
 @testable import ImageSearch
+import XCTest
 
 class ImagesModuleConfiguratorTests: XCTestCase {
-
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,12 +21,11 @@ class ImagesModuleConfiguratorTests: XCTestCase {
     }
 
     func testConfigureModuleForViewController() {
-
-        //given
+        // given
         let viewController = ImagesViewControllerMock()
         let configurator = ImagesModuleConfigurator()
 
-        //when
+        // when
         configurator.configureModuleForViewInput(viewInput: viewController)
 
         //then
@@ -42,7 +40,6 @@ class ImagesModuleConfiguratorTests: XCTestCase {
     }
 
     class ImagesViewControllerMock: ImagesViewController {
-
         var setupInitialStateDidCall = false
 
         override func setupInitialState() {

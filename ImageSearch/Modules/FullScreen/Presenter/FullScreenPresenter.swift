@@ -7,20 +7,17 @@
 //
 
 class FullScreenPresenter: FullScreenModuleInput, FullScreenViewOutput {
-
     weak var view: FullScreenViewInput!
 
     func viewIsReady() {
-
     }
-    
+
     func imageStringURL() -> String {
         return imageURL
     }
-    
+
     var imageURL: String = "" {
         didSet {
-            
         }
     }
 }

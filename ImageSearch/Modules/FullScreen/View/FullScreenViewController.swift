@@ -6,16 +6,16 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
-
+import UIKit
 
 class FullScreenViewController: UIViewController, FullScreenViewInput {
-
     var output: FullScreenViewOutput!
 
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet var image: UIImageView!
+
     // MARK: Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
@@ -23,14 +23,13 @@ class FullScreenViewController: UIViewController, FullScreenViewInput {
         navigationController?.isToolbarHidden = true
     }
 
-
     // MARK: FullScreenViewInput
+
     func setupInitialState() {
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        image.kf.setImage(with: URL(string:output.imageStringURL())!)
+        image.kf.setImage(with: URL(string: output.imageStringURL())!)
     }
-    
 }

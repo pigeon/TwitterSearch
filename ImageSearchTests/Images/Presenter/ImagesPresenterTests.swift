@@ -6,11 +6,10 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-import XCTest
 @testable import ImageSearch
+import XCTest
 
 class ImagesPresenterTest: XCTestCase {
-
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,24 +21,18 @@ class ImagesPresenterTest: XCTestCase {
     }
 
     class MockInteractor: ImagesInteractorInput {
-        func search(with hashtag: String) {
+        func search(with _: String) {
         }
-        
-
     }
-
 
     class MockViewController: ImagesViewInput {
         func reload() {
         }
-        
-        func show(error: NSError) {
-            
+
+        func show(error _: NSError) {
         }
-        
 
         func setupInitialState() {
-
         }
     }
 }

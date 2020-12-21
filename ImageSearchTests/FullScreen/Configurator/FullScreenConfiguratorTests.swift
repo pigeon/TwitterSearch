@@ -6,11 +6,10 @@
 //  Copyright © 2018 Dmytro Golub. All rights reserved.
 //
 
-import XCTest
 @testable import ImageSearch
+import XCTest
 
 class FullScreenModuleConfiguratorTests: XCTestCase {
-
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,12 +21,11 @@ class FullScreenModuleConfiguratorTests: XCTestCase {
     }
 
     func testConfigureModuleForViewController() {
-
-        //given
+        // given
         let viewController = FullScreenViewControllerMock()
         let configurator = FullScreenModuleConfigurator()
 
-        //when
+        // when
         configurator.configureModuleForViewInput(viewInput: viewController)
 
         //then
@@ -36,11 +34,9 @@ class FullScreenModuleConfiguratorTests: XCTestCase {
 
         let presenter: FullScreenPresenter = viewController.output as! FullScreenPresenter
         XCTAssertNotNil(presenter.view, "view in FullScreenPresenter is nil after configuration")
-
     }
 
     class FullScreenViewControllerMock: FullScreenViewController {
-
         var setupInitialStateDidCall = false
 
         override func setupInitialState() {

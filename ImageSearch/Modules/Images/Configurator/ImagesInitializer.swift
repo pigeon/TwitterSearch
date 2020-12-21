@@ -9,14 +9,11 @@
 import UIKit
 
 class ImagesModuleInitializer: NSObject {
-
-    //Connect with object on storyboard
-    @IBOutlet weak var imagesViewController: ImagesViewController!
+    // Connect with object on storyboard
+    @IBOutlet var imagesViewController: ImagesViewController!
 
     override func awakeFromNib() {
-
         let configurator = ImagesModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: imagesViewController)
     }
-
 }

@@ -8,15 +8,14 @@
 import UIKit
 
 protocol ImagesViewOutput {
-
     /**
-        @author Dmytro Golub
-        Notify presenter that view is ready
-    */
+     @author Dmytro Golub
+     Notify presenter that view is ready
+     */
 
     func viewIsReady()
     func numberOfItemsInSection() -> Int
-    func dataModel(with index:IndexPath) -> SearchImageCellModel
-    func imageSelected(at index:IndexPath)
+    func dataModel(with index: IndexPath) -> SearchImageCellModel
+    func imageSelected(at index: IndexPath)
     func prepare(for segue: UIStoryboardSegue)
 }

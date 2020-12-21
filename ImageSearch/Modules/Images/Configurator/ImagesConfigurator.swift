@@ -9,17 +9,13 @@
 import UIKit
 
 class ImagesModuleConfigurator {
-
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
-
         if let viewController = viewInput as? ImagesViewController {
             configure(viewController: viewController)
         }
     }
 
     private func configure(viewController: ImagesViewController) {
-
-
         let presenter = ImagesPresenter()
         presenter.view = viewController
 
@@ -29,5 +25,4 @@ class ImagesModuleConfigurator {
         presenter.interactor = interactor
         viewController.output = presenter
     }
-
 }
